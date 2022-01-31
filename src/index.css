@@ -7,7 +7,20 @@ nav .brand-logo {
   display: block;
   text-align: center;
   position: relative;
+  padding-top: .5rem;
 }
+
+nav .personalizacion {
+  display: block;
+  text-align: center;
+  position: relative;
+  color: black;
+}
+
+nav .personalizacion:hover {
+  color: aqua;
+}
+
 .input-field label {
   color: white;
 }
