@@ -6,6 +6,8 @@ const Form = () => {
         pais: ''
     })
 
+    const [error, setError] = useState(false)
+
     const {ciudad, pais} = search
 
     // Función que coloca los elementos en el state
@@ -16,8 +18,23 @@ const Form = () => {
         })
     }
 
+    // Cuando el usuario da submit al form
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        // Validación
+        if(ciudad.trim() === '' || pais.trim() === '') {
+            setError(true)
+            return
+        }
+        setError(false)
+    }
+
     return (
-        <form>
+        <form
+            onSubmit={handleSubmit}
+        >
+            {error ? <p className="red darken-4 error">Se requieren todos los campos</p> : null}
             <div className='input-field col s12'>
                 <input
                     type='text'
@@ -45,6 +62,13 @@ const Form = () => {
                     <option value="VE">Venezuela</option>
                     <label htmlFor='pais'>País: </label>
                 </select>
+            </div>
+            <div className="input-field col s12">
+                <input
+                    type="submit"
+                    value="Buscar Clima"
+                    className="waves-effect waves-light btn-large btn-block yellow accent-4"
+                />
             </div>
         </form>
     )
