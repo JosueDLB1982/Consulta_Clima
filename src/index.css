@@ -10,11 +10,17 @@ nav .brand-logo {
   padding-top: .5rem;
 }
 
-nav .personalizacion {
+.personalizacion {
   display: block;
-  text-align: center;
+  text-align: right;
   position: relative;
+  margin-right: 2rem;
+  padding: 2rem;
   color: black;
+}
+
+.personalizacion:hover {
+  color: cornsilk;
 }
 
 nav .personalizacion:hover {

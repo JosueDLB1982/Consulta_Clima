@@ -3,6 +3,7 @@ import Form from "./components/Form"
 import Header from "./components/Header"
 import Clima from "./components/Clima"
 import Error from "./components/Error"
+import Footer from "./components/Footer"
 
 function App() {
   const [search, setSearch] = useState({
@@ -22,7 +23,7 @@ function App() {
     const consultAPI = async () => {
       if (consultation) {
         const appId = '3dcb68e60691adf731ac60bfd89f3785'
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
         const answer = await fetch(url)
         const result = await answer.json()
         setResult(result)
@@ -71,6 +72,9 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer
+        personalizacion='Josue Lopez - Developer Treinee'
+      />
     </Fragment>
   )
 }
