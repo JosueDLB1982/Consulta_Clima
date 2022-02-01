@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from "react"
 import Form from "./components/Form"
 import Header from "./components/Header"
+import Clima from "./components/Clima"
 
 function App() {
   const [search, setSearch] = useState({
@@ -9,6 +10,8 @@ function App() {
   })
 
   const [consultation, setConsultation] = useState(false)
+
+  const [result, setResult] = useState({})
 
   const { ciudad, pais } = search
 
@@ -19,7 +22,8 @@ function App() {
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
         const answer = await fetch(url)
         const result = await answer.json()
-        console.log(result)
+        setResult(result)
+        setConsultation(false) //Para que cambie el state a false y poder hacer consultas nuevas
       }
     }
     consultAPI()
@@ -43,7 +47,9 @@ function App() {
               />
             </div>
             <div className="col m6 s12">
-              2
+              <Clima
+                result={result}
+              />
             </div>
           </div>
         </div>
