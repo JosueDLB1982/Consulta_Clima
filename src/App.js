@@ -10,15 +10,21 @@ function App() {
 
   const [consultation, setConsultation] = useState(false)
 
-  const {ciudad, pais} = search
-    
+  const { ciudad, pais } = search
+
   useEffect(() => {
     const consultAPI = async () => {
-
+      if (consultation) {
+        const appId = '3dcb68e60691adf731ac60bfd89f3785'
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`
+        const answer = await fetch(url)
+        const result = await answer.json()
+        console.log(result)
+      }
     }
     consultAPI()
   }, [consultation])
-  
+
 
   return (
     <Fragment>
