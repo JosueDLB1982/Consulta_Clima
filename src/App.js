@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react"
 import Form from "./components/Form"
 import Header from "./components/Header"
 import Clima from "./components/Clima"
+import Error from "./components/Error"
 
 function App() {
   const [search, setSearch] = useState({
@@ -12,6 +13,8 @@ function App() {
   const [consultation, setConsultation] = useState(false)
 
   const [result, setResult] = useState({})
+
+  const [error, setError] = useState(false)
 
   const { ciudad, pais } = search
 
@@ -24,11 +27,27 @@ function App() {
         const result = await answer.json()
         setResult(result)
         setConsultation(false) //Para que cambie el state a false y poder hacer consultas nuevas
+
+        // Detectar si hay una respuesta positiva de la API
+
+        if (result.cod === '404') {
+          setError(true)
+        } else {
+          setError(false)
+        }
       }
     }
     consultAPI()
   }, [consultation])
 
+  let component
+  if(error) {
+    component = <Error mensaje='No hay resultados. Verifique los Datos Introducidos.' />
+  } else {
+    component =  <Clima
+                    result={result}
+                  />
+  }
 
   return (
     <Fragment>
@@ -47,9 +66,7 @@ function App() {
               />
             </div>
             <div className="col m6 s12">
-              <Clima
-                result={result}
-              />
+              {component}
             </div>
           </div>
         </div>
