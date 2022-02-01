@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Error from "./Error"
+import PropTypes from 'prop-types'
 
 const Form = ({search, setSearch, setConsultation}) => {
     
@@ -36,7 +37,7 @@ const Form = ({search, setSearch, setConsultation}) => {
         <form
             onSubmit={handleSubmit}
         >
-            {error ? <Error mensaje='Todos los campos son requeridos' /> : null}
+            {error ? <Error message='Todos los campos son requeridos' /> : null}
             <div className='input-field col s12'>
                 <input
                     type='text'
@@ -74,6 +75,12 @@ const Form = ({search, setSearch, setConsultation}) => {
             </div>
         </form>
     )
+}
+
+Form.propTypes = {
+    search : PropTypes.object.isRequired,
+    setSearch : PropTypes.func.isRequired,
+    setConsultation : PropTypes.func.isRequired
 }
 
 export default Form

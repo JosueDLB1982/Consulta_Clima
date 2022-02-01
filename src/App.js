@@ -42,7 +42,7 @@ function App() {
 
   let component
   if(error) {
-    component = <Error mensaje='No hay resultados. Verifique los Datos Introducidos.' />
+    component = <Error message='No hay resultados. Verifique los Datos Introducidos.' />
   } else {
     component =  <Clima
                     result={result}
@@ -52,7 +52,7 @@ function App() {
   return (
     <Fragment>
       <Header
-        titulo='Clima React App'
+        title='Clima React App'
       />
 
       <div className="contenedor-form">
